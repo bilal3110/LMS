@@ -1,91 +1,130 @@
+# Horizon Learning Management System
 
-# LMS
+Horizon LMS is a Laravel web application for Blue Horizon school. It provides a public school website, an administrator panel, and a student portal.
 
-## Run locally
+## Features
 
-1. Install PHP dependencies with `composer install`.
-2. Configure `.env` with your MySQL connection and create the configured database.
-3. Generate an application key and run the migrations:
+- Public home, about, gallery, contact, and admission pages.
+- Contact messages and student admission applications.
+- Course catalogue and course application forms.
+- Admin tools for reviewing applications and messages, managing students and student portal accounts, maintaining courses and class subjects, and viewing the dashboard.
+- Student login and pages for profile information, class subjects, course applications, and diary.
+- Separate session-based authentication for administrators and students.
+- Laravel migrations, model factories, and demo data.
 
-   ```sh
-   php artisan key:generate
-   php artisan migrate
-   ```
+## Requirements
 
-4. Start the development server:
+- PHP `^8.0.2` and Composer
+- MySQL
+- Node.js and npm if you need to build the Vite frontend assets
 
-   ```sh
-   php artisan serve
-   ```
+The project uses Laravel `^9.19`. Faker is a development dependency used by the factories and demo seeder, so install Composer dependencies without `--no-dev` when setting up a development database.
 
-The site is available at `http://127.0.0.1:8000`.
+## Local setup
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+In PowerShell, from the project directory:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+```powershell
+Copy-Item .env.example .env
+composer install
+php artisan key:generate
+```
 
-## About Laravel
+Create a MySQL database, then edit `.env` to set the connection values (`DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`). The example configuration uses MySQL on `127.0.0.1:3306` and database name `lms`.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Run the schema migrations and load sample data:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```powershell
+php artisan migrate --seed
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Start the application:
 
-## Learning Laravel
+```powershell
+php artisan serve
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Visit <http://127.0.0.1:8000>.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The repository includes Vite configuration and npm scripts for the `resources/css/app.css` and `resources/js/app.js` entry points. To install JavaScript dependencies and build those assets:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```powershell
+npm install
+npm run build
+```
 
-## Laravel Sponsors
+For frontend development with Vite's watcher, run `npm run dev` in a separate terminal.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Demo accounts
 
-### Premium Partners
+The demo seeder creates this administrator account:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+| Role | Email | Password |
+| --- | --- | --- |
+| Administrator | `admin@horizon.edu.pk` | `Horizon123` |
 
-## Contributing
+It also creates student records and portal accounts. Each seeded portal email is the student's generated roll number followed by `@horizon.edu.pk`; the password is `Horizon123`. Look up a generated roll number in the `students` or `student_portal` table to sign in.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+These are predictable local-demo credentials. Do not use them in a production deployment; change or remove the demo accounts and configure production credentials securely.
 
-## Code of Conduct
+## Main routes
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Area | Routes |
+| --- | --- |
+| Public website | `/`, `/about`, `/gallery`, `/contact`, `/admission` |
+| Course catalogue and application | `/admission/course` |
+| Admin registration and login | `/adminPanel/signup`, `/adminPanel/login` |
+| Student login | `/studentPortal/login` |
+| Authenticated API example | `/api/user` (Sanctum authentication required) |
 
-## Security Vulnerabilities
+Admin dashboard and management pages are under `/adminPanel`; student dashboard and account pages are under `/studentPortal`. See `routes/web.php` and `routes/api.php` for the full route definitions. The `/send-email` route is a mail test endpoint; review its implementation and configure mail before using it.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Database and demo seeding
 
-## License
+Migrations in `database/migrations` define:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Administrator accounts, students, student portal accounts, and school admission records
+- Courses, course applications, and class subjects
+- Contact messages
+- Laravel users, password resets, failed jobs, and Sanctum personal access tokens
 
-(Changes from the remote branch)
+`php artisan db:seed` runs `Database\Seeders\LmsDemoSeeder`. It creates an administrator if one does not already exist, subjects for classes 1–10, and sample admission records, courses, students, portal accounts, course applications, and contact messages. Factory-generated records are added when the seeder is run again, so repeated seeding can add duplicate sample data. Run it only against a development database, never against data you need to preserve.
 
+Seeders are in `database/seeders`; factories are in `database/factories`.
+
+## Project structure
+
+```text
+app/
+  Http/Controllers/   Public, admin, student, and mail request handlers
+  Http/Middleware/    Admin and student access middleware
+  Models/             Eloquent models
+database/
+  factories/          Factory definitions for sample records
+  migrations/         Database schema
+  seeders/            Demo data
+resources/views/
+  frontend/           Public website
+  adminPanel/         Admin interface
+  studentPortal/      Student interface
+routes/
+  web.php             Browser routes
+  api.php             API routes
+public/               Static images, stylesheets, and scripts
+```
+
+## Tests
+
+Run the test suite with:
+
+```powershell
+php artisan test
+```
+
+The current suite includes Laravel's example feature and unit tests.
+
+## Configuration
+
+- Keep `.env` local; do not commit database credentials, application keys, or mail credentials.
+- Configure `MAIL_*` values in `.env` before using mail features.
+- Admin and student session guards are defined in `config/auth.php`.
