@@ -1,33 +1,4 @@
 @extends('frontend.layout.main')
 @section('main-section')
-    <!-- Navbar Ends -->
-
-    <main id="home" style="min-height: 42vh;">
-      <div class="head-txt">
-        <h2>About Us</h2>
-      </div>
-    </main>
-
-    <section class="about" id="about">
-      <div class="about-txt">
-        <h2>Our Vision</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem nemo eius
-          nulla officia excepturi repellendus molestias, soluta consequatur quam
-          earum voluptates veniam accusamus ipsum minus officiis saepe maiores
-          ad tempora. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Blanditiis maiores ab tempore dicta sunt saepe similique ex et cum
-          excepturi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Amet inventore veritatis quas quidem nihil provident et ad itaque
-          totam id? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Praesentium doloribus, labore facilis distinctio aliquam atque.
-          Placeat nam ipsam quos nemo.
-        </p>
-        <!-- <a href="" id="head-btn">View More</a> -->
-      </div>
-
-      <div class="about-img">
-        <img src="images/studentss.jpg" alt="" />
-      </div>
-    </section>
+<main id="content"><section class="page-hero shell"><p class="eyebrow">Our school / Since day one</p><h1>Learning is not a race. It is a practice.</h1><p>Blue Horizon gives children the attention, challenge and belonging they need to become engaged learners.</p></section><section class="shell editorial-grid"><div><p class="section-number">Our belief</p></div><div><h2>Education should expand a child’s sense of what is possible.</h2><p>We bring together clear expectations and warm relationships. Children learn to read closely, think carefully, communicate honestly, and approach unfamiliar problems with courage.</p><p>Our classrooms are places of purposeful activity: a question being worked through, a new skill taking shape, a teacher noticing the next useful challenge.</p></div><figure><img src="{{ url('frontend/images/students.jpg') }}" alt="Students gathered outdoors"></figure></section><section class="values-section"><div class="shell"><p class="eyebrow">What guides us</p><div class="value-grid"><article><span>01</span><h3>Curiosity</h3><p>Questions are the beginning of good work.</p></article><article><span>02</span><h3>Care</h3><p>We notice people, ideas and the world we share.</p></article><article><span>03</span><h3>Craft</h3><p>We value patience, practice and a job well done.</p></article></div></div></section><section class="shell story-strip"><p>“A good school is a place where children feel both safe enough to try and supported enough to persist.”</p><a class="text-link" href="{{ route('f-contact') }}">Talk with our team <span aria-hidden="true">→</span></a></section></main>
 @endsection

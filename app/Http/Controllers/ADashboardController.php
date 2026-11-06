@@ -10,7 +10,7 @@ use App\Models\StudentPortal;
 use App\Models\subjects;
 use Auth;
 use Carbon\Carbon;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ADashboardController extends Controller
@@ -106,7 +106,7 @@ class ADashboardController extends Controller
         $application = classes::find($id);
 
         if (!$application) {
-            return redirect()->back() - with("Error! Data Not Found");
+            return redirect()->back()->with("Error! Data Not Found");
         }
 
         $year = Carbon::now()->year;
@@ -243,7 +243,7 @@ class ADashboardController extends Controller
             'stud_address' => $student->stud_address,
             'stud_class' => $student->stud_class,
             'stud_section' => $student->stud_section,
-            'stud_image' => $student->stud_img,
+            'stud_image' => $student->stud_img ?? 'studentPortal/images/im.webp',
         ]);
         if ($portal) {
             $message = ['success' => 'Student portal created successfully.'];

@@ -1,8 +1,6 @@
-<div class="sidebar">
+<aside class="sidebar" aria-label="Student navigation">
     <div class="logo">
-      <a href="">
-        <img src="images/logo.png" alt="" />
-      </a>
+      <a href="{{ route('s-dashboard') }}">Student area</a>
     </div>
     <hr />
     <ul>
@@ -20,4 +18,4 @@
         <a href="{{route('s-diary')}}"><i class="fa-solid fa-note-sticky"></i> Diary</a>
       </li>
     </ul>
-  </div>
+  </aside>

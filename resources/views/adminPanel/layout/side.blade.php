@@ -1,8 +1,6 @@
-<div class="sidebar">
+<aside class="sidebar" aria-label="Administration navigation">
     <div class="logo">
-      <a href="">
-        <img src="images/logo.png" alt="" />
-      </a>
+      <a href="{{ route('dashboard') }}">Admin workspace</a>
     </div>
     <hr />
     <ul>
@@ -37,4 +35,4 @@
       <li>
       </li>
     </ul>
-  </div>
+  </aside>

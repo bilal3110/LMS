@@ -1,106 +1,12 @@
 @extends('frontend.layout.main')
 @section('main-section')
-    <!-- Navbar Ends -->
-    <main id="home">
-      <div class="head-txt">
-        <h2>A Bright Future while growing together</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae
-          totam itaque ullam impedit!
-        </p>
-        <a href="" id="head-btn">Apply Now</a>
-      </div>
-    </main>
-    <section class="about" id="about">
-      <div class="about-txt">
-        <h2>About School</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem nemo eius
-          nulla officia excepturi repellendus molestias, soluta consequatur quam
-          earum voluptates veniam accusamus ipsum minus officiis saepe maiores
-          ad tempora. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Blanditiis maiores ab tempore dicta sunt saepe similique ex et cum
-          excepturi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Amet inventore veritatis quas quidem nihil provident et ad itaque
-          totam id? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Praesentium doloribus, labore facilis distinctio aliquam atque.
-          Placeat nam ipsam quos nemo.
-        </p>
-        <a href="" id="head-btn">View More</a>
-      </div>
-
-      <div class="about-img">
-        <img src="{{url('frontend/images/studentss.jpg')}}" alt="" />
-      </div>
-    </section>
-
-    <div class="courses" id="courses">
-      <h2>Our Courses</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.ecati?</p>
-      <div class="c-content">
-        <div class="c-box">
-          <h3>Kinder Garden</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt nihil
-            commodi obca
-          </p>
-        </div>
-
-        <div class="c-box">
-          <h3>Primary School</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt nihil
-            commodi obca
-          </p>
-        </div>
-
-        <div class="c-box">
-          <h3>Middle School</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt nihil
-            commodi obca
-          </p>
-        </div>
-
-        <div class="c-box">
-          <h3>High School</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt nihil
-            commodi obca
-          </p>
-        </div>
-      </div>
-      <a href="" id="head-btn">Apply Now</a>
-    </div>
-
-    <section class="gallery" id="gallery">
-      <h2>Gallery</h2>
-      <div class="g-content">
-        <div>
-          <img src="{{url('frontend/images/g (1).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (2).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (3).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (4).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (5).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (6).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (7).jpg')}}" alt="" />
-        </div>
-        <div>
-          <img src="{{url('frontend/images/g (1).jpg')}}" alt="" />
-        </div>
-      </div>
-    </section>
-
+<main id="content">
+  <section class="home-hero">
+    <div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">An education with direction</p><h1>Room to <em>grow</em>.<br>Guidance to go far.</h1><p class="hero-lede">Blue Horizon is a learning community where children build sound foundations, lasting curiosity, and confidence in their own voice.</p><div class="button-row"><a class="button" href="{{ route('f-apply') }}">Begin an application <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ route('f-about') }}">Discover our approach <span aria-hidden="true">→</span></a></div></div><figure class="hero-image"><img src="{{ url('frontend/images/head.jpg.jpg') }}" alt="Students learning together at Blue Horizon"><figcaption>Learning happens in every direction.</figcaption></figure></div>
+  </section>
+  <section class="shell introduction"><p class="section-number">01 / A school with a clear purpose</p><div><h2>We make space for serious learning and joyful discovery.</h2><p>Our school day balances strong academic habits with the kind of questions, collaboration, and making that help young people understand the world around them.</p><a class="text-link" href="{{ route('f-about') }}">Meet Blue Horizon <span aria-hidden="true">→</span></a></div></section>
+  <section class="learning-bands"><div class="shell"><div class="section-heading"><p class="eyebrow">Learning pathways</p><h2>Every stage has its own horizon.</h2></div><div class="band-list"><article><span>01</span><h3>Early years</h3><p>Play, language and secure routines for a confident start.</p></article><article><span>02</span><h3>Primary school</h3><p>Foundational knowledge with growing independence.</p></article><article><span>03</span><h3>Middle school</h3><p>Ideas deepen as interests and responsibility take shape.</p></article><article><span>04</span><h3>Senior school</h3><p>Focused preparation for the next meaningful step.</p></article></div></div></section>
+  <section class="shell feature-split"><figure><img src="{{ url('frontend/images/studentss.jpg') }}" alt="Students collaborating in a classroom"></figure><div><p class="eyebrow">School life</p><h2>A community built around the child.</h2><p>From the first welcome to the final bell, children are known, encouraged, and invited to take part. Family partnership is central to how we work.</p><a class="button button--outline" href="{{ route('f-gallery') }}">See campus life <span aria-hidden="true">↗</span></a></div></section>
+  <section class="admission-banner"><div class="shell"><p class="eyebrow">Admissions</p><h2>Ready to begin the conversation?</h2><a class="button button--light" href="{{ route('f-add-procedure') }}">How to apply <span aria-hidden="true">↗</span></a></div></section>
+</main>
 @endsection

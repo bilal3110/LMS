@@ -1,82 +1,8 @@
-$(document).ready(function () {
-  $("#user").click(function () {
-    $("#user-links").slideToggle("slow");
-  });
-});
-
-$(document).ready(function () {
-  var isSidebarVisible = true;
-
-  $("#bars").on("click", function () {
-    if (isSidebarVisible) {
-      $(".sidebar").animate({ left: "-20%" }, 300);
-      $(".main-content").removeClass("with-sidebar").addClass("full-width");
-    } else {
-      $(".sidebar").animate({ left: "0" }, 300);
-      $(".main-content").removeClass("full-width").addClass("with-sidebar");
-    }
-    isSidebarVisible = !isSidebarVisible;
-  });
-});
-
-// To-Do-List Function
-$(document).ready(function () {
-  $("#saveNote").click(function () {
-    var notehead = $("#note-h").val();
-    var notedesc = $("#note-d").val();
-    var currentDate = new Date().toLocaleString();
-
-    if (notehead && notedesc) {
-      var note = {
-        content: notehead,
-        description: notedesc,
-        date: currentDate,
-      };
-      var notes = JSON.parse(localStorage.getItem("userNotes")) || [];
-      notes.push(note);
-      localStorage.setItem("userNotes", JSON.stringify(notes));
-      $("#note-h").val("");
-      $("#note-d").val("");
-      loadNotes();
-    }
-  });
-  function loadNotes() {
-    var notes = JSON.parse(localStorage.getItem("userNotes")) || [];
-    $("#notesList").empty();
-    if (notes.length === 0) {
-      $("#notesList").append("<p>No notes saved yet.</p>");
-    } else {
-      notes.forEach(function (note, index) {
-        $("#notesList").append(
-          '<div class="card p-4 note" style="width: 30rem;">' +
-            '<h1 style="font-size: 20px; font-weight: 700; opacity: 0.7;">' +
-            note.content +
-            "</h1>" +
-            "<h6><em>Created on: " +
-            note.date +
-            "</em></h6>" +
-            '<p style="font-weight: 500;">' +
-            note.description +
-            "</p>" +
-            "<span>" +
-            '<a class="btn btn-danger my-2 deleteNote" style="font-size: 14px; font-weight: 600;" data-index="' +
-            index +
-            '">Delete</a>' +
-            "</span>" +
-            "</div>"
-        );
-      });
-      $(".deleteNote").click(function () {
-        var noteIndex = $(this).data("index");
-        deleteNote(noteIndex);
-      });
-    }
-  }
-  function deleteNote(index) {
-    var notes = JSON.parse(localStorage.getItem("userNotes")) || [];
-    notes.splice(index, 1);
-    localStorage.setItem("userNotes", JSON.stringify(notes));
-    loadNotes();
-  }
-  loadNotes();
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar=document.querySelector('.sidebar'), menu=document.querySelector('#bars'), user=document.querySelector('#user'), links=document.querySelector('#user-links');
+  if(menu&&sidebar)menu.addEventListener('click',()=>{const hidden=sidebar.classList.toggle('is-collapsed');menu.setAttribute('aria-expanded',String(!hidden))});
+  if(user&&links)user.addEventListener('click',()=>{const open=links.classList.toggle('is-open');user.setAttribute('aria-expanded',String(open))});
+  document.addEventListener('click',e=>{if(links&&!e.target.closest('#user')&&!e.target.closest('#user-links')){links.classList.remove('is-open');user?.setAttribute('aria-expanded','false')}});
+  const modal=document.querySelector('.modal'), trigger=document.querySelector('[data-bs-target="#exampleModal"]'), close=modal?.querySelector('[data-bs-dismiss="modal"]');const shut=()=>{modal?.classList.remove('is-open');trigger?.focus()};if(trigger&&modal){trigger.removeAttribute('data-bs-toggle');trigger.addEventListener('click',()=>modal.classList.add('is-open'));close?.addEventListener('click',shut);modal.addEventListener('click',e=>{if(e.target===modal)shut()});document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()})}
+  const save=document.querySelector('#saveNote'),title=document.querySelector('#note-h'),description=document.querySelector('#note-d'),list=document.querySelector('#notesList');if(save&&title&&description&&list){const key='horizonAdminNotes',esc=s=>{const e=document.createElement('div');e.textContent=s;return e.innerHTML},render=()=>{const notes=JSON.parse(localStorage.getItem(key)||'[]');list.innerHTML=notes.length?'':'<p>No notes saved yet.</p>';notes.forEach((n,i)=>{const x=document.createElement('article');x.className='card p-4 note';x.innerHTML=`<h1>${esc(n.title)}</h1><p>${esc(n.description)}</p><small>${esc(n.date)}</small><button type="button" class="btn btn-danger deleteNote" data-index="${i}">Delete</button>`;list.append(x)})};save.addEventListener('click',e=>{e.preventDefault();if(!title.value.trim()||!description.value.trim()){title.focus();return}const notes=JSON.parse(localStorage.getItem(key)||'[]');notes.push({title:title.value.trim(),description:description.value.trim(),date:new Date().toLocaleString()});localStorage.setItem(key,JSON.stringify(notes));title.value='';description.value='';shut();render()});list.addEventListener('click',e=>{const b=e.target.closest('.deleteNote');if(!b)return;const notes=JSON.parse(localStorage.getItem(key)||'[]');notes.splice(Number(b.dataset.index),1);localStorage.setItem(key,JSON.stringify(notes));render()});render()}
 });

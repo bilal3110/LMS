@@ -1,25 +1,4 @@
 @extends('frontend.layout.main')
 @section('main-section')
-    <!-- Navbar Ends -->
-    <main id="home" style="min-height: 42vh;">
-      <div class="head-txt">
-        <h2>Admissions Procedure</h2>
-      </div>
-    </main>
-
-    <section class="procedure">
-        <h2>You Must Follow Following Instructions</h2>
-        <ol>
-            <li>Step 1: Fill the Admission Form</li>
-            <li>Step 2: Pay the Admission Fee</li>
-            <li>Step 3: Get the Admission Letter</li>
-            <li>Step 4: Submit Your Documents</li>
-            <li>Step 5: Get Your Confirmation Letter</li>
-        </ol>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni modi quasi expedita aut necessitatibus veniam iste optio autem fuga. Id eum ab repudiandae?</p>
-        <span>
-            <a href="" id="head-btn">Apply Now</a>
-        </span>
-    </section>
-
+<main id="content"><section class="page-hero shell compact"><p class="eyebrow">Admissions / 2026–27</p><h1>A clear path to Blue Horizon.</h1><p>We keep admissions considered, welcoming and straightforward from your first enquiry to your child’s first day.</p></section><section class="shell admissions-layout"><aside><p class="section-number">Your next steps</p><p>Have a question before you begin? <a href="{{ route('f-contact') }}">Contact admissions.</a></p></aside><ol class="process-list"><li><span>01</span><div><h2>Complete your application</h2><p>Share your child’s details and the class you are applying for through our online form.</p><a class="text-link" href="{{ route('f-apply') }}">Apply online <span aria-hidden="true">→</span></a></div></li><li><span>02</span><div><h2>Meet the school</h2><p>Our admissions team will arrange a conversation and, where appropriate, a visit.</p></div></li><li><span>03</span><div><h2>Submit supporting documents</h2><p>Bring the requested identification and previous school information to complete the record.</p></div></li><li><span>04</span><div><h2>Receive your decision</h2><p>We will be in touch with the next steps and enrolment information.</p></div></li></ol></section><section class="callout shell"><div><p class="eyebrow">A note for families</p><h2>Every application is read with care.</h2></div><p>Our team is here to make the transition into a new school feel calm and well understood.</p></section></main>
 @endsection
